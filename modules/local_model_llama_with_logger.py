@@ -6,39 +6,34 @@ from deepeval.models import GPTModel
 # 1. Create a storage list for our logs
 judge_interactions = []
 
-def save_to_json(data, filename="judge_traces.json"):
+def save_to_json(data, filename="modules/loggers/judge_traces.json"):
     with open(filename, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
-
+        json.dump(data, f, indent=4, default=str)
+        
+        
 # 2. Define the Interceptor
 def trace_judge(model_instance):
     original_a_generate = model_instance.a_generate
 
     async def patched_a_generate(prompt, schema=None):
-        # Capture the request
+        res, cost = await original_a_generate(prompt, schema)
+
         interaction = {
-            "model": model_instance.model_name,
+            "model": model_instance.model,
             "prompt": prompt,
             "schema_expected": str(schema) if schema else None,
-            "response": None
+            "response": str(res),   # force to string
+            "cost": float(cost) if cost is not None else None
         }
-        
-        # Execute the actual call to llama-server
-        # Note: GPTModel.a_generate returns (output_text, cost)
-        res, cost = await original_a_generate(prompt, schema)
-        
-        # Capture the response
-        interaction["response"] = res
+
         judge_interactions.append(interaction)
-        
-        # Auto-save after every call
         save_to_json(judge_interactions)
-        
+
         return res, cost
 
-    # Apply the patch
     model_instance.a_generate = patched_a_generate
     return model_instance
+
 
 # 3. Setup your Judge
 local_judge = GPTModel(
@@ -49,7 +44,7 @@ local_judge = GPTModel(
 )
 
 # 4. Wrap it with our tracer
-# local_judge = trace_judge(local_judge)
+loggin_model = trace_judge(local_judge)
 
 # --- Now use local_judge in your metrics as usual ---
 # from deepeval.metrics import AnswerRelevancyMetric
