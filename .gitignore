@@ -1,0 +1,87 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.deepeval
+.env
+
+# --- Python Base ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Virtual Environments ---
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# --- DeepEval & Testing ---
+.deepeval/
+# DeepEval generates local cache and results; exclude these to keep repo clean
+latest_report.json
+deepeval_results.json
+# If you use Pytest for DeepEval
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.cache
+htmlcov/
+
+# --- AI/ML Models (CRITICAL) ---
+# Do not track large model files
+*.gguf
+*.bin
+*.onnx
+*.weights
+# If you download models into a specific folder
+models/
+!models/.gitkeep
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+# Local settings for notebooks
+.virtual_documents/
+
+# --- Environment & Secrets ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.bak
