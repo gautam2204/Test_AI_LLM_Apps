@@ -1,7 +1,7 @@
-import deepeval
+
 import os
+from deepeval import test_case
 from dotenv import load_dotenv
-from openai import api_key
 
 load_dotenv()
 

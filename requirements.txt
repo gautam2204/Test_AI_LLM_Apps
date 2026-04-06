@@ -1,3 +1,5 @@
 deepeval
 python-dotenv
 ipykernel
+langchain
+langchain_openai

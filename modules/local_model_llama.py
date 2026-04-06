@@ -1,0 +1,8 @@
+from deepeval.models import GPTModel
+
+local_judge = GPTModel(
+    model="DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M",             # Name doesn't matter, but helps in logs
+    base_url="http://localhost:8080", 
+    api_key="needed-but-ignored"      # Llama-server doesn't need a real key
+)
+
