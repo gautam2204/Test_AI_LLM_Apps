@@ -3,3 +3,11 @@ python-dotenv
 ipykernel
 langchain
 langchain_openai
+langchain
+langchain-core
+langchain-community
+pypdf
+pymupdf
+ipykernel
+sentence-transformers
+chromadb
