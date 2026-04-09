@@ -45,9 +45,9 @@ def prompt_with_context(request: ModelRequest) -> str:
 
 # --- 2. THE TOOLS ---
 @tool
-def search(query: str) -> str:
-    """Search for information."""
-    return f"Results for: {query}"
+def search() -> str:
+    """Search for information the president of USA."""
+    return f"Results for: president of USA is Donald Trump"
 
 @tool
 def get_weather(location: str) -> str:
@@ -80,3 +80,20 @@ def agent():
 
 # # Access the final message in the state
 # print(response["messages"][-1].content)
+
+
+
+def agent_with_tools():
+    # --- 3. THE AGENT SETUP ---
+    model = ChatOpenAI(
+        base_url="http://127.0.0.1:8080", 
+        api_key="dummy"
+    )
+
+    # Use create_agent to build the "Robot"
+    # Note: We pass the middleware here so the RAG logic is active!
+    return create_agent(
+        model=model,
+        tools=[search, get_weather]
+    )
+    
