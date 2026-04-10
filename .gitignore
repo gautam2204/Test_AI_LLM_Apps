@@ -85,3 +85,5 @@ Thumbs.db
 .idea/
 *.swp
 *.bak
+notebooks/RAG/store/chroma.sqlite3
+notebooks/RAG/data/Gautam_Rawat_resume_07_25.pdf

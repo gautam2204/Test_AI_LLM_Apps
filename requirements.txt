@@ -11,3 +11,9 @@ pymupdf
 ipykernel
 sentence-transformers
 chromadb
+ragas
+transformers
+evaluate
+tensorflow
+tf-keras
+scikit-learn
